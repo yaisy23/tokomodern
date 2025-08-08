@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toko Online Modern</title>
+    <title>Calcershop - Toko Online Modern</title>
     <style>
+        html {
+            scroll-behavior: smooth; /* Efek scroll halus */
+        }
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
@@ -31,10 +34,11 @@
             color: #ff6600;
         }
         .hero {
-            background: url('https://source.unsplash.com/1600x600/?shopping') no-repeat center center/cover;
-            color: white;
+            background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwAobFo0wZCBCp0MweQZ_sllVrZW_mX3s9Lw&s') no-repeat center center/cover;
+            color: orange;
             padding: 100px 30px;
             text-align: center;
+            
         }
         .hero h1 {
             font-size: 2.5em;
@@ -90,24 +94,27 @@
 </head>
 <body>
 
+    <!-- HEADER -->
     <header>
-        <div class="logo"><strong>TokoModern</strong></div>
+        <div class="logo"><strong>Calcershop</strong></div>
         <nav>
-            <a href="#">Home</a>
-            <a href="#">Kategori</a>
-            <a href="promo">Promo</a>
-            <a href="#">Blog</a>
-            <a href="#">Kontak</a>
+            <a href="#home">Home</a>
+            <a href="#kategori">Kategori</a>
+            <a href="#promo">Promo</a>
+            <a href="#blog">Blog</a>
+            <a href="#kontak">Kontak</a>
         </nav>
     </header>
 
-    <section class="hero">
+    <!-- HOME -->
+    <section id="home" class="hero">
         <h1>Belanja Mudah, Cepat, dan Aman</h1>
         <p>Temukan produk favorit Anda dengan harga terbaik</p>
         <button onclick="alert('Ayo mulai belanja!')">Belanja Sekarang</button>
     </section>
 
-    <section class="section">
+    <!-- KATEGORI -->
+    <section id="kategori" class="section">
         <h2>Kategori Produk</h2>
         <div class="categories">
             <div class="card"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiiUovVnVE2PhpZNVnAK-nr99FUvnXe2dxx5zRKSGs8Gq-8Wr_tBUpARF_oIiVnItBdwxHWlrYB1-4Spcqu20z1MDmKKexOn_BcQA09G__OE1nk-xYhJTYcgCkckFP0MF0107Gio6u89p7RCIeIAhO7qUqtSAYHTQTnOBsayUImtYpNYvJhJSR72k19GQ/w1200-h630-p-k-no-nu/alexandre_christie_jam_tangan_pria_alexander_christie_original-jam_tangan_alexandre_christie_pria-jam_alexandre_christie_pria_original-jam_alexander_christie_pria-ac6564_full01_pdzy88id.webp" alt=""><p>Elektronik</p></div>
@@ -117,22 +124,26 @@
         </div>
     </section>
 
-    <section class="promo">
+    <!-- PROMO -->
+    <section id="promo" class="promo">
         <h2>Promo Spesial!</h2>
         <p>Diskon hingga 50% untuk produk pilihan. Berlaku sampai akhir bulan ini!</p>
     </section>
 
-    <section class="section">
+    <!-- BLOG / PRODUK -->
+    <section id="blog" class="section">
         <h2>Produk Populer</h2>
         <div class="products" id="product-list">
             <!-- Produk akan dimuat lewat JavaScript -->
         </div>
     </section>
 
-    <footer class="footer">
-        <p>&copy; 2025 TokoModern - Semua Hak Dilindungi</p>
+    <!-- KONTAK -->
+    <footer id="kontak" class="footer">
+        <p>&copy; 2025 Calcershop - Semua Hak Dilindungi</p>
     </footer>
 
+    <!-- JAVASCRIPT -->
     <script>
         const products = [
             { name: "Smartphone X", price: "Rp 3.500.000", img: "https://source.unsplash.com/400x300/?smartphone" },
