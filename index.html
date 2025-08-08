@@ -6,7 +6,7 @@
     <title>Calcershop - Toko Online Modern</title>
     <style>
         html {
-            scroll-behavior: smooth; /* Efek scroll halus */
+            scroll-behavior: smooth;
         }
         body {
             margin: 0;
@@ -38,7 +38,6 @@
             color: orange;
             padding: 100px 30px;
             text-align: center;
-            
         }
         .hero h1 {
             font-size: 2.5em;
@@ -90,6 +89,30 @@
             margin: 40px 0;
             border-radius: 10px;
         }
+        /* FORM PENJUALAN */
+        #form-penjualan {
+            display: none;
+            background: white;
+            padding: 20px;
+            margin: 40px auto;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        #form-penjualan input, #form-penjualan select, #form-penjualan button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        #form-penjualan button {
+            background: #ff6600;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -101,7 +124,7 @@
             <a href="#home">Home</a>
             <a href="#kategori">Kategori</a>
             <a href="#promo">Promo</a>
-            <a href="#blog">Blog</a>
+            <a href="#blog">Produk</a>
             <a href="#kontak">Kontak</a>
         </nav>
     </header>
@@ -110,7 +133,7 @@
     <section id="home" class="hero">
         <h1>Belanja Mudah, Cepat, dan Aman</h1>
         <p>Temukan produk favorit Anda dengan harga terbaik</p>
-        <button onclick="alert('Ayo mulai belanja!')">Belanja Sekarang</button>
+        <button>Belanja Sekarang</button>
     </section>
 
     <!-- KATEGORI -->
@@ -130,20 +153,40 @@
         <p>Diskon hingga 50% untuk produk pilihan. Berlaku sampai akhir bulan ini!</p>
     </section>
 
-    <!-- BLOG / PRODUK -->
+    <!-- PRODUK -->
     <section id="blog" class="section">
         <h2>Produk Populer</h2>
-        <div class="products" id="product-list">
-            <!-- Produk akan dimuat lewat JavaScript -->
-        </div>
+        <div class="products" id="product-list"></div>
     </section>
 
-    <!-- KONTAK -->
+    <!-- FORM PENJUALAN -->
+    <section id="form-penjualan">
+        <h2>Form Pembelian</h2>
+        <form>
+            <label>Nama Produk</label>
+            <input type="text" id="produk" readonly>
+            <label>Harga</label>
+            <input type="text" id="harga" readonly>
+            <label>Nama Pembeli</label>
+            <input type="text" placeholder="Masukkan nama lengkap" required>
+            <label>Alamat</label>
+            <input type="text" placeholder="Masukkan alamat lengkap" required>
+            <label>Metode Pembayaran</label>
+            <select required>
+                <option value="">--Pilih Metode--</option>
+                <option>Transfer Bank</option>
+                <option>COD</option>
+                <option>E-Wallet</option>
+            </select>
+            <button type="submit">Checkout</button>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
     <footer id="kontak" class="footer">
         <p>&copy; 2025 Calcershop - Semua Hak Dilindungi</p>
     </footer>
 
-    <!-- JAVASCRIPT -->
     <script>
         const products = [
             { name: "Smartphone X", price: "Rp 3.500.000", img: "https://source.unsplash.com/400x300/?smartphone" },
@@ -153,10 +196,25 @@
         ];
 
         const productList = document.getElementById('product-list');
+        const formSection = document.getElementById('form-penjualan');
+        const produkInput = document.getElementById('produk');
+        const hargaInput = document.getElementById('harga');
+
         products.forEach(p => {
             const div = document.createElement('div');
             div.classList.add('card');
-            div.innerHTML = `<img src="${p.img}" alt=""><h3>${p.name}</h3><p>${p.price}</p><button>Beli</button>`;
+            div.innerHTML = `
+                <img src="${p.img}" alt="">
+                <h3>${p.name}</h3>
+                <p>${p.price}</p>
+                <button>Beli</button>
+            `;
+            div.querySelector('button').addEventListener('click', () => {
+                produkInput.value = p.name;
+                hargaInput.value = p.price;
+                formSection.style.display = 'block';
+                window.scrollTo({ top: formSection.offsetTop - 50, behavior: 'smooth' });
+            });
             productList.appendChild(div);
         });
     </script>
