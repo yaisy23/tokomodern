@@ -113,6 +113,34 @@
             border: none;
             cursor: pointer;
         }
+        /* POPUP NOTIFIKASI */
+        #popup {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        #popup .popup-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 300px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        #popup button {
+            background: #ff6600;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin-top: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -162,7 +190,7 @@
     <!-- FORM PENJUALAN -->
     <section id="form-penjualan">
         <h2>Form Pembelian</h2>
-        <form>
+        <form id="checkout-form">
             <label>Nama Produk</label>
             <input type="text" id="produk" readonly>
             <label>Harga</label>
@@ -182,6 +210,15 @@
         </form>
     </section>
 
+    <!-- POPUP NOTIFIKASI -->
+    <div id="popup">
+        <div class="popup-content">
+            <h3>Transaksi Berhasil!</h3>
+            <p>Terima kasih telah berbelanja di Calcershop.</p>
+            <button id="close-popup">Tutup</button>
+        </div>
+    </div>
+
     <!-- FOOTER -->
     <footer id="kontak" class="footer">
         <p>&copy; 2025 Calcershop - Semua Hak Dilindungi</p>
@@ -199,6 +236,9 @@
         const formSection = document.getElementById('form-penjualan');
         const produkInput = document.getElementById('produk');
         const hargaInput = document.getElementById('harga');
+        const checkoutForm = document.getElementById('checkout-form');
+        const popup = document.getElementById('popup');
+        const closePopup = document.getElementById('close-popup');
 
         products.forEach(p => {
             const div = document.createElement('div');
@@ -216,6 +256,18 @@
                 window.scrollTo({ top: formSection.offsetTop - 50, behavior: 'smooth' });
             });
             productList.appendChild(div);
+        });
+
+        // Event submit form checkout
+        checkoutForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            popup.style.display = 'flex';
+        });
+
+        // Tutup popup
+        closePopup.addEventListener('click', function() {
+            popup.style.display = 'none';
+            formSection.style.display = 'none';
         });
     </script>
 
